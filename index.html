@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transition Practice</title>
+    <style>
+        .ball {
+            border-radius: 25px;
+            width: 50px;
+            height: 50px;
+            background: rgb(74, 217, 26);
+            position: absolute;
+            top: 0;
+            left: 0;
+            transition: transform 1s ease-in-out;
+            z-index: -1;
+        }
+    </style>
+</head>
+<body>
+    <p>Rule 1: Click anywhere to move the ball.</p>
+    <p>Rule 2: Dont make the ball reach the clicked position.</p>
+    <div id="foo" class="ball"></div>
+    <div class="loser"></div>
+    
+    <script>
+        const f = document.getElementById("foo");
+        const l = document.querySelector(".loser");
+        document.addEventListener("click", (ev) => {
+            f.style.transform = `translateY(${ev.clientY - 25}px)`;
+            f.style.transform += `translateX(${ev.clientX - 25}px)`;
+        }, false,);
+
+        f.addEventListener("transitionend", () => l.innerHTML  = `<b style="font-size:6rem">YOU LOST</b>`)
+    </script>
+</body>
+</html>
